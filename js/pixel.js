@@ -63,10 +63,13 @@ export function say(key, ctx = {}, force = false) {
   timer = setTimeout(() => { bubble?.remove(); btn.innerHTML = pixelSVG('happy'); }, 7000);
 }
 
+// Harmless browser noise (cancelled page transitions, ResizeObserver) must not be announced as a bug.
+export const isBenignError = r => r?.name === 'AbortError' || /ResizeObserver loop/.test(r?.message || (typeof r === 'string' ? r : ''));
+
 export function initPixel() {
   mount();
   const t = Date.now(), prev = store.get('last', 0); store.set('last', t);
   if (prev && t - prev > 4 * 36e5) setTimeout(() => say('return'), 1200);
-  addEventListener('error', () => say('bug'));
-  addEventListener('unhandledrejection', () => say('bug'));
+  addEventListener('error', e => { if (!isBenignError(e.error || e.message)) say('bug'); });
+  addEventListener('unhandledrejection', e => { if (isBenignError(e.reason)) { e.preventDefault(); return; } say('bug'); });
 }
