@@ -26,7 +26,7 @@ export function kmeansLab(el) {
     X.forEach((r, i) => { const d = Math.hypot(44 + (r[ax] - ex[0]) / (ex[1] - ex[0] || 1) * (W - 60) - u, 300 - 30 - (r[ay] - ey[0]) / (ey[1] - ey[0] || 1) * (300 - 46) - v); if (d < best) { best = d; bi = i; } });
     return best < 14 ? `customer ${bi + 1}${km.a[bi] >= 0 ? ` · cluster ${km.a[bi] + 1}` : ''}<br>${F.map((f, j) => `${f[1]}: ${X[bi][j]}`).join('<br>')}` : null; });
   const fresh = run => { km = run ? best(k) : kmeans(X, k, seed); phase = 'assign'; iter = 0; shown = null; };
-  const sel = (l, v, on) => { const w = document.createElement('label'); w.innerHTML = `<span>${l}</span><select>${F.map(([, t], i) => `<option value="${i}"${i === v ? ' selected' : ''}>${t}</option>`).join('')}</select>`; w.querySelector('select').onchange = ev => { on(+ev.target.value); draw(); }; s.bar.append(w); };
+  const sel = (l, v, on) => { const w = document.createElement('label'); w.innerHTML = `<span>${l}</span><select>${F.map(([, t], i) => `<option value="${i}"${i === v ? ' selected' : ''}>${t}</option>`).join('')}</select>`; w.querySelector('select').onchange = ev => { on(+ev.target.value); if (ax === ay) { if (ev.target === xs) ay = (ax + 1) % F.length; else ax = (ay + 1) % F.length; } syncSel(); draw(); }; s.bar.append(w); return w.querySelector('select'); };
   function draw() {
     const [x, W, H] = c.prep(), vx = X.map(r => r[ax]), vy = X.map(r => r[ay]), ex = [Math.min(...vx), Math.max(...vx)], ey = [Math.min(...vy), Math.max(...vy)];
     const px = v => 44 + (v - ex[0]) / (ex[1] - ex[0] || 1) * (W - 60), py = v => H - 30 - (v - ey[0]) / (ey[1] - ey[0] || 1) * (H - 46);
@@ -43,6 +43,6 @@ export function kmeansLab(el) {
   choice(s.bar, 'K:', [2, 3, 4, 5].map(v => [v, String(v)]), k, v => { k = v; fresh(true); sync(false); });
   button(s.bar, 'Step', () => { if (phase === 'assign') { km.assign(); phase = 'update'; } else { km.update(); phase = 'assign'; iter++; } draw(); sync(true); }, 'primary');
   button(s.bar, 'Run to finish', () => { km.run(); phase = 'assign'; draw(); sync(true); }); button(s.bar, 'Restart with new centres', () => { seed++; fresh(false); sync(false); }, 'ghost');
-  sel('X axis', ax, v => ax = v); sel('Y axis', ay, v => ay = v);
+  const xs = sel('X axis', ax, v => ax = v), ys = sel('Y axis', ay, v => ay = v), syncSel = () => { xs.value = ax; ys.value = ay; };
   fresh(true); draw();
 }

@@ -2,12 +2,13 @@ import { mountLayout } from '../layout.js';
 import { MODULES } from '../data/modules.js';
 import { REFS } from '../data/refs.js';
 import { heroViz } from '../hero.js';
+import { LABS } from '../insight.js';
 import { pixelSVG } from '../pixel.js';
 import { done } from '../xp.js';
 mountLayout('index.html');
 
 const d = done(), next = MODULES.find(m => !d.includes(m.id)), mins = MODULES.reduce((a, m) => a + m.mins, 0);
-const labs = new Set(MODULES.flatMap(m => m.sections.map(s => s.w).filter(Boolean))).size;
+const labs = Object.keys(LABS).length;
 const resume = d.length && next ? `Continue: ${next.title}` : null;
 
 document.getElementById('main').innerHTML = `
@@ -18,7 +19,7 @@ document.getElementById('main').innerHTML = `
     <p class="lead rise" style="--i:2">Train models. Break things. Discover patterns. Finally understand what Machine Learning is actually doing.</p>
     <div class="cta rise" style="--i:3"><a class="btn p" data-magnetic href="lab.html">Let's Experiment <span aria-hidden="true">→</span></a><a class="btn" data-magnetic href="learn.html">Explore the Universe</a></div>
     ${resume ? `<p class="rise" style="--i:4;margin:18px 0 0"><a class="resume" href="modules.html#${next.id}">↳ ${resume}</a></p>` : ''}
-    <ul class="hero-meta rise" style="--i:5"><li><b>${MODULES.length}</b> modules</li><li><b>${labs}</b> live labs</li><li><b>${Math.round(mins / 6) / 10}</b> hours</li><li><b>${Object.keys(REFS).length}</b> real sources</li></ul>
+    <ul class="hero-meta rise" style="--i:5"><li><b>${MODULES.length}</b> modules</li><li><b>${labs}</b> lab experiments</li><li><b>${Math.round(mins / 6) / 10}</b> hours</li><li><b>${Object.keys(REFS).length}</b> real sources</li></ul>
   </div>
   <div class="hero-viz rise" style="--i:3" id="hv"></div>
 </section>

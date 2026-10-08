@@ -69,8 +69,8 @@ export function gd(el, { compact = false, autoplay = false, presets = true } = {
   }
   const play = button(s.bar, 'Play', () => { if (timer) return stop(); play.textContent = 'Pause'; timer = setInterval(() => { step(); draw(); const L = hist.at(-1), P = hist.at(-2); if (!isFinite(L) || L > 1e5 || hist.length > 600 || Math.abs(L - P) < 1e-7) stop(); }, speed); }, 'primary');
   button(s.bar, 'Step ×10', () => { for (let i = 0; i < 10; i++) step(); draw(); }); button(s.bar, 'Replay', () => { reset(); play.click(); }); button(s.bar, 'Reset', reset);
-  if (!compact) slider(s.bar, 'Speed', { min: 1, max: 5, step: 1, value: 3, fmt: v => ['', 'slow', 'calm', 'normal', 'fast', 'turbo'][v] }, v => { speed = [0, 160, 90, 45, 22, 8][v]; if (timer) { stop(); play.click(); } });
   const sl = slider(s.bar, 'Learning rate', { min: 0.001, max: 0.15, step: 0.001, value: lr, fmt: v => (+v).toFixed(3) }, v => { lr = v; reset(); });
+  if (!compact) slider(s.bar, 'Speed', { min: 1, max: 5, step: 1, value: 3, fmt: v => ['', 'slow', 'calm', 'normal', 'fast', 'turbo'][v] }, v => { speed = [0, 160, 90, 45, 22, 8][v]; if (timer) { stop(); play.click(); } });
   if (presets && !compact) [['Too small', 0.002], ['Good', 0.03], ['Edge of stable', 0.1], ['Diverges', 0.13]].forEach(([t, v]) => button(s.bar, t, () => { lr = v; sl.set(v); reset(); }, 'ghost'));
   if (compact) s.bar.hidden = true;
   reset(); if (autoplay) { if (reduced()) { for (let i = 0; i < 200; i++) step(); draw(); } else play.click(); }
