@@ -9,6 +9,12 @@ const DS = {
 };
 const ALG = { logistic: 'Logistic regression', tree: 'Decision tree', knn: 'K-Nearest Neighbors', linear: 'Linear regression', baseline: 'Baseline (no learning)' };
 
+// Features to keep after the target changes: the previous picks minus the new target, never empty.
+export function nextFeatures(cols, target, prev) {
+  const keep = new Set([...prev].filter(c => c !== target && cols.includes(c)));
+  return keep.size ? keep : new Set(cols.filter(c => c !== target));
+}
+
 export function final(el) {
   let ds = 'visitors', target = 'converted', feats = new Set(['duration', 'pages', 'returning']), alg = 'logistic', res = null, inp = {};
   const s = shell(el, 'Work top to bottom, like a real project. Every number comes from models trained live in your browser on synthetic data.', null), box = document.createElement('div'); box.className = 'final'; s.body.append(box);
@@ -27,7 +33,7 @@ export function final(el) {
       <p class="wstat">Task: <b>${bin ? 'classification' : 'regression'}</b> (target “${target}” is ${bin ? 'a 0/1 category' : 'a number'}).</p>
       <button type="button" class="wb primary" id="f-go">⑤ Train and evaluate</button><div id="f-out"></div>`;
     box.querySelector('#f-ds').onchange = e => { ds = e.target.value; target = DS[ds].def; feats = new Set(DS[ds].cols.filter(c => c !== target).slice(0, 3)); res = null; render(); };
-    box.querySelector('#f-t').onchange = e => { target = e.target.value; res = null; render(); };
+    box.querySelector('#f-t').onchange = e => { target = e.target.value; feats = nextFeatures(DS[ds].cols, target, feats); res = null; render(); };
     box.querySelector('#f-a').onchange = e => { alg = e.target.value; if (res) run(); };
     box.querySelectorAll('fieldset input').forEach(i => i.onchange = () => { i.checked ? feats.add(i.value) : feats.delete(i.value); res = null; box.querySelector('#f-out').innerHTML = ''; });
     box.querySelector('#f-go').onclick = run; if (res) run();
