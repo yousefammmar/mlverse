@@ -1,0 +1,33 @@
+// Reference library. Modules cite by id with [[id]]; the Resources page lists everything.
+// type: paper | book | course | interactive | docs
+export const REFS = {
+  mitchell:   { type: 'book', a: 'Mitchell, T. M.', y: 1997, t: 'Machine Learning', v: 'McGraw-Hill', u: 'http://www.cs.cmu.edu/~tom/mlbook.html' },
+  esl:        { type: 'book', a: 'Hastie, T., Tibshirani, R., Friedman, J.', y: 2009, t: 'The Elements of Statistical Learning (2nd ed.)', v: 'Springer', u: 'https://hastie.su.domains/ElemStatLearn/' },
+  ruder:      { type: 'paper', a: 'Ruder, S.', y: 2016, t: 'An overview of gradient descent optimization algorithms', v: 'arXiv:1609.04747', u: 'https://arxiv.org/abs/1609.04747' },
+  saito:      { type: 'paper', a: 'Saito, T., Rehmsmeier, M.', y: 2015, t: 'The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets', v: 'PLOS ONE 10(3)', u: 'https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0118432' },
+  mlcc:       { type: 'course', a: 'Google for Developers', y: 2024, t: 'Machine Learning Crash Course', v: 'Google', u: 'https://developers.google.com/machine-learning/crash-course' },
+  cs229:      { type: 'course', a: 'Stanford University', y: 2024, t: 'CS229: Machine Learning', v: 'Stanford', u: 'https://cs229.stanford.edu/' },
+  fastai:     { type: 'course', a: 'Howard, J., Gugger, S.', y: 2022, t: 'Practical Deep Learning for Coders', v: 'fast.ai', u: 'https://course.fast.ai/' },
+  ngml:       { type: 'course', a: 'Ng, A.', y: 2022, t: 'Machine Learning Specialization', v: 'Coursera / DeepLearning.AI', u: 'https://www.coursera.org/specializations/machine-learning-introduction' },
+  statquest:  { type: 'course', a: 'Starmer, J.', y: 2019, t: 'StatQuest: Gradient Descent, Step-by-Step', v: 'YouTube', u: 'https://www.youtube.com/watch?v=sDv4f4s2SB8' },
+  '3b1b-la':  { type: 'course', a: 'Sanderson, G.', y: 2016, t: 'Essence of Linear Algebra', v: '3Blue1Brown', u: 'https://www.3blue1brown.com/topics/linear-algebra' },
+  mluexplain: { type: 'interactive', a: 'Amazon Machine Learning University', y: 2021, t: 'MLU-Explain: visual essays on core ML ideas', v: 'mlu-explain.github.io', u: 'https://mlu-explain.github.io/' },
+  biasvar:    { type: 'interactive', a: 'Amazon MLU', y: 2021, t: 'The Bias-Variance Tradeoff (visual essay)', v: 'MLU-Explain', u: 'https://mlu-explain.github.io/bias-variance/' },
+  momentum:   { type: 'interactive', a: 'Goh, G.', y: 2017, t: 'Why Momentum Really Works', v: 'Distill', u: 'https://distill.pub/2017/momentum/' },
+  distill:    { type: 'interactive', a: 'Distill editorial team', y: 2017, t: 'Distill: an interactive, visual journal for machine learning research', v: 'distill.pub', u: 'https://distill.pub/' },
+  sklinear:   { type: 'docs', a: 'scikit-learn developers', y: 2024, t: 'Linear Models: user guide', v: 'scikit-learn', u: 'https://scikit-learn.org/stable/modules/linear_model.html' },
+  skmetrics:  { type: 'docs', a: 'scikit-learn developers', y: 2024, t: 'Metrics and scoring: quantifying prediction quality', v: 'scikit-learn', u: 'https://scikit-learn.org/stable/modules/model_evaluation.html' },
+  skcv:       { type: 'docs', a: 'scikit-learn developers', y: 2024, t: 'Cross-validation: evaluating estimator performance', v: 'scikit-learn', u: 'https://scikit-learn.org/stable/modules/cross_validation.html' },
+  isl:        { type: 'book', a: 'James, G., Witten, D., Hastie, T., Tibshirani, R.', y: 2021, t: 'An Introduction to Statistical Learning (2nd ed.)', v: 'Springer (free online)', u: 'https://www.statlearning.com/' },
+  skcluster:  { type: 'docs', a: 'scikit-learn developers', y: 2024, t: 'Clustering (including K-Means): user guide', v: 'scikit-learn', u: 'https://scikit-learn.org/stable/modules/clustering.html' },
+  sktree:     { type: 'docs', a: 'scikit-learn developers', y: 2024, t: 'Decision Trees: user guide', v: 'scikit-learn', u: 'https://scikit-learn.org/stable/modules/tree.html' },
+  skneighbors:{ type: 'docs', a: 'scikit-learn developers', y: 2024, t: 'Nearest Neighbors: user guide', v: 'scikit-learn', u: 'https://scikit-learn.org/stable/modules/neighbors.html' },
+  skprep:     { type: 'docs', a: 'scikit-learn developers', y: 2024, t: 'Preprocessing data (scaling and encoding)', v: 'scikit-learn', u: 'https://scikit-learn.org/stable/modules/preprocessing.html' },
+  skpitfalls: { type: 'docs', a: 'scikit-learn developers', y: 2024, t: 'Common pitfalls and recommended practices (data leakage)', v: 'scikit-learn', u: 'https://scikit-learn.org/stable/common_pitfalls.html' },
+  rulesml:    { type: 'course', a: 'Zinkevich, M.', y: 2017, t: 'Rules of Machine Learning: Best Practices for ML Engineering', v: 'Google for Developers', u: 'https://developers.google.com/machine-learning/guides/rules-of-ml' },
+  glossary:   { type: 'docs', a: 'Google for Developers', y: 2024, t: 'Machine Learning Glossary', v: 'Google', u: 'https://developers.google.com/machine-learning/glossary' },
+  kaggleintro:{ type: 'course', a: 'Kaggle', y: 2024, t: 'Intro to Machine Learning (free micro-course)', v: 'Kaggle Learn', u: 'https://www.kaggle.com/learn/intro-to-machine-learning' },
+  kagglecln:  { type: 'course', a: 'Kaggle', y: 2024, t: 'Data Cleaning (free micro-course)', v: 'Kaggle Learn', u: 'https://www.kaggle.com/learn/data-cleaning' },
+  ga4pred:    { type: 'docs', a: 'Google Analytics Help', y: 2024, t: '[GA4] Predictive metrics (purchase probability, churn probability)', v: 'Google', u: 'https://support.google.com/analytics/answer/9846734' },
+};
+export const TYPES = { paper: 'Research papers', book: 'Books', course: 'Courses & lectures', interactive: 'Interactive explainers', docs: 'Documentation' };
