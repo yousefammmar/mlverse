@@ -48,5 +48,6 @@ export function mountLayout(page) {
   document.getElementById('themebtn').onclick = e => { e.stopPropagation(); const h = e.currentTarget; h.parentElement.style.position = 'relative'; pop(h, THEMES.map(([k, t]) => `<button type="button" data-t="${k}">${t}<small>${getTheme() === k ? '●' : ''}</small></button>`).join(''), h.parentElement, m => m.onclick = ev => { const k = ev.target.closest('[data-t]')?.dataset.t; if (k) { setTheme(k); close(); } }); };
   document.getElementById('profbtn').onclick = () => { close(); profile(); };
   addEventListener('click', e => { if (!e.target.closest('.menu')) close(); });
+  addEventListener('keydown', e => { if (e.key !== 'Escape') return; const open = document.querySelector('[aria-haspopup][aria-expanded=true]'); if (open) { close(); open.focus(); } });
   const bg = document.getElementById('burger'); bg.onclick = () => { const o = nav.classList.toggle('open'); bg.setAttribute('aria-expanded', o); };
 }

@@ -23,9 +23,10 @@ export function reveal(root = document) {
 
 function modal(html) {
   const m = document.createElement('div'); m.className = 'modal'; m.innerHTML = `<div role="dialog" aria-modal="true">${html}</div>`;
-  const close = () => { m.remove(); removeEventListener('keydown', esc); }, esc = e => e.key === 'Escape' && close();
+  const opener = document.activeElement; // return focus here when the dialog closes
+  const close = () => { m.remove(); removeEventListener('keydown', esc); opener?.focus?.(); }, esc = e => e.key === 'Escape' && close();
   m.onclick = e => { if (e.target === m || e.target.closest('[data-close]')) close(); }; addEventListener('keydown', esc); document.body.append(m);
-  m.querySelector('input,button')?.focus(); return m;
+  m.querySelector('input,button')?.focus(); m.close = close; return m;
 }
 export function shortcuts() {
   modal(`<h2>Keyboard shortcuts</h2><dl class="keys">
@@ -39,7 +40,7 @@ export function profile() {
   const m = modal(`<h2>Your profile</h2><label class="field"><span class="label">Display name</span><input id="pf-n" maxlength="24" value="${name.replace(/"/g, '&quot;')}" placeholder="Anonymous learner"></label>
     <p class="lead" style="font-size:.95rem">Level ${level(s.xp)} · ${s.xp} XP · ${s.streak}-day streak · ${s.done.length}/6 modules. Everything is stored only in this browser.</p>
     <p style="display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 0"><button class="btn p sm" id="pf-s" type="button">Save</button><button class="btn sm" id="pf-r" type="button" style="color:var(--coral)">Reset all progress…</button></p>`);
-  m.querySelector('#pf-s').onclick = () => { store.set('name', m.querySelector('#pf-n').value.trim()); m.querySelector('[data-close]')?.click(); m.remove(); };
+  m.querySelector('#pf-s').onclick = () => { store.set('name', m.querySelector('#pf-n').value.trim()); m.close(); };
   m.querySelector('#pf-r').onclick = () => { if (confirm('Erase all MLVERSE progress in this browser? This cannot be undone.')) { Object.keys(localStorage).filter(k => k.startsWith('mlverse:') && !/theme|pixelPrefs|sound/.test(k)).forEach(k => localStorage.removeItem(k)); location.reload(); } };
 }
 export function initKeys() {

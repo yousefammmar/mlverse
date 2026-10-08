@@ -30,3 +30,11 @@ test('falls back to the default for wrong-typed or corrupt data', () => {
 test('rejects non-finite numbers', () => {
   put('xp', '1e999'); assert.equal(store.get('xp', 0), 0);
 });
+
+test('never throws when storage itself throws (private mode, quota, blocked)', () => {
+  const real = globalThis.localStorage;
+  globalThis.localStorage = { getItem() { throw new Error('blocked'); }, setItem() { throw new Error('quota'); }, removeItem() {} };
+  assert.equal(store.get('xp', 7), 7);
+  assert.doesNotThrow(() => store.set('xp', 1));
+  globalThis.localStorage = real;
+});
