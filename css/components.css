@@ -59,7 +59,8 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 .wflow button:hover{border-color:var(--accent);transform:translateY(-2px)}.wflow button.on{background:var(--accent);color:var(--accent-ink);border-color:transparent}.wflow button.on i{background:rgba(0,0,0,.18);color:inherit}
 .final{display:grid;gap:14px}.final h3{font-size:1rem;margin:18px 0 6px}
 .fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.fgrid label,.wbar select,.final select{font-size:.84rem;color:var(--mute);display:grid;gap:4px}
+.fgrid label,.wbar select,.final select{font-size:.84rem;color:var(--mute);display:grid;gap:4px;min-width:0}
+.fgrid select{width:100%}
 select{background:var(--surface);color:var(--ink);border:1px solid var(--line2);border-radius:12px;padding:8px 12px;font:inherit;font-size:.88rem;max-width:100%}
 .final fieldset{border:1px solid var(--line);border-radius:16px;padding:8px 14px 12px;display:flex;flex-wrap:wrap;gap:6px 18px}.final legend{font-size:.8rem;color:var(--mute);padding:0 6px}
 .final .wbar{border:1px solid var(--line);border-radius:16px}

@@ -32,3 +32,8 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}footer nav a:hover{color:var(--a
   .morewrap .menu{position:static;box-shadow:none;border:0;padding:0 0 0 8px}
   footer{grid-template-columns:1fr;padding:40px 16px 32px}
 }
+
+@media (max-width:360px){
+  header.top{padding:6px 8px 6px 10px;gap:6px}.nright{gap:4px}
+  .iconbtn,.orb{width:34px;height:34px}.brand{font-size:1rem;gap:7px}.brand svg{width:26px;height:26px}
+}
