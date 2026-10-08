@@ -43,7 +43,7 @@ a.bc:hover{transform:translateY(-6px) rotate(-.4deg);border-color:var(--accent);
 .rcard:hover{transform:translateX(4px);border-color:var(--c)}
 .rcard.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 14%,var(--surface));box-shadow:0 0 0 1px var(--c) inset,0 10px 30px -16px var(--c)}
 .rico{flex:none;width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:color-mix(in srgb,var(--c) 16%,transparent);color:var(--c);transition:transform .4s var(--ease)}.rico svg{width:28px;height:28px}.rcard:hover .rico,.rcard.on .rico{transform:rotate(-6deg) scale(1.08)}
-.rtxt{display:grid;line-height:1.2;min-width:0}.rtxt small{font:500 .62rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--c)}.rtxt b{font:600 .96rem var(--head)}
+.rtxt{display:grid;line-height:1.2;min-width:0}.rtxt small{font:500 .62rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:color-mix(in srgb,var(--c) 40%,var(--ink))}.rtxt b{font:600 .96rem var(--head)}
 .seen{position:absolute;right:12px;top:12px;width:7px;height:7px;border-radius:50%;background:var(--line2)}.rcard.visited .seen{background:var(--c)}
 .rail-tip{margin:0;font-size:.78rem;color:var(--mute)}
 .stagehead{padding:4px 4px 10px}.stagehead h1{font-size:clamp(1.8rem,3.4vw,2.6rem);margin-top:6px}
